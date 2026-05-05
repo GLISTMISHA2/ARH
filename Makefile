@@ -1,19 +1,19 @@
 CXX = g++
-CXXFLAGS = -O2 -Iimgui -Iimgui/backends -Iimplot
-LIBS = -lGL -lglfw -lpthread -ldl
+CXXFLAGS = -O2 -Iimgui -Iimgui/backends -Iimplot -march=native
+LIBS = -lglfw -lGL -ldl -lpthread
 
-SRC = main.cpp \
-      imgui/imgui.cpp \
-      imgui/imgui_draw.cpp \
-      imgui/imgui_tables.cpp \
-      imgui/imgui_widgets.cpp \
-      imgui/backends/imgui_impl_glfw.cpp \
-      imgui/backends/imgui_impl_opengl3.cpp \
-      implot/implot.cpp \
-      implot/implot_items.cpp
+OBJ = main.o \
+      imgui/imgui.o imgui/imgui_draw.o imgui/imgui_tables.o imgui/imgui_widgets.o \
+      imgui/backends/imgui_impl_glfw.o imgui/backends/imgui_impl_opengl3.o \
+      implot/implot.o implot/implot_items.o
 
-all:
-	$(CXX) $(CXXFLAGS) -o neongui $(SRC) $(LIBS)
+all: neongui
+
+neongui: $(OBJ)
+	$(CXX) -o $@ $^ $(LIBS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f neongui
+	rm -f neongui $(OBJ)
