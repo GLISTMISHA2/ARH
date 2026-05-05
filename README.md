@@ -1,10 +1,9 @@
-# ARH
-Теперь на Orange Pi:
+# ARH — ARM NEON Benchmark
 
-bash
-git clone --recursive https://github.com/GLISTMISHA2/ARH.git
-cd ARH
+## старт
+
+### Зависимости
+
+```bash
 sudo apt update
 sudo apt install g++ libglfw3-dev libgl1-mesa-dev -y
-make
-./neongui
